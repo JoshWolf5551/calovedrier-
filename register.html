@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Créer mon compte</title>
+    <style>
+      :root {
+        --bg: #fffaf8;
+        --panel: rgba(255,255,255,0.78);
+        --text: #2c2430;
+        --muted: #6d6171;
+        --rose: #ef94a5;
+        --rose-deep: #d76d83;
+        --lavender: #eae0ff;
+        --line: rgba(118,88,116,0.14);
+        --shadow: 0 20px 50px rgba(112,69,86,0.12);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 30px;
+        font-family: Inter, "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #fffaf8 0%, #fff8fa 30%, #f9f5ff 100%);
+        color: var(--text);
+      }
+
+      .auth-shell {
+        width: min(1000px, 100%);
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        background: rgba(255,255,255,0.58);
+        border: 1px solid rgba(255,255,255,0.7);
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, rgba(247,215,221,0.85), rgba(234,224,255,0.85));
+        padding: 48px 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.05em;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 420px;
+      }
+
+      .form-panel {
+        padding: 32px 28px;
+        background: rgba(255,255,255,0.36);
+      }
+
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .tab {
+        flex: 1;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.7);
+        border-radius: 12px;
+        padding: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--text);
+      }
+
+      .tab.active {
+        background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+        color: white;
+        border-color: transparent;
+      }
+
+      form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      label {
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.7);
+        border-radius: 14px;
+        padding: 12px 14px;
+        font: inherit;
+        color: var(--text);
+        outline: none;
+      }
+
+      input:focus {
+        border-color: rgba(215,109,131,0.6);
+        box-shadow: 0 0 0 4px rgba(239,148,165,0.12);
+      }
+
+      .submit-btn {
+        border: none;
+        background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+        color: white;
+        padding: 14px 18px;
+        border-radius: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(215,109,131,0.22);
+      }
+
+      .muted-link {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
+
+      .muted-link button {
+        border: none;
+        background: transparent;
+        color: var(--rose-deep);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      @media (max-width: 760px) {
+        .auth-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 28px 22px;
+        }
+
+        .form-panel {
+          padding: 22px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-shell">
+      <section class="hero">
+        <h1>On sort ensemble ?</h1>
+        <p>
+          Crée ton compte, rejoins ou crée un duo, puis choisis tes disponibilités.
+        </p>
+      </section>
+
+      <section class="form-panel">
+        <div class="tabs">
+          <button class="tab active" type="button" data-mode="register">Créer un compte</button>
+          <button class="tab" type="button" data-mode="login">Se connecter</button>
+        </div>
+
+        <form id="registerForm">
+          <div class="field">
+            <label for="fullName">Nom complet</label>
+            <input id="fullName" type="text" placeholder="Ex : Emma Martin" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="prenom@domaine.com" required />
+          </div>
+
+          <div class="field">
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" placeholder="Minimum 6 caractères" required />
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Confirmer le mot de passe</label>
+            <input id="confirmPassword" type="password" placeholder="Répétez le mot de passe" required />
+          </div>
+
+          <div class="field">
+            <label for="duoCodeInput">Code duo (laisser vide pour créer un duo)</label>
+            <input id="duoCodeInput" type="text" placeholder="Ex : A7K9P2" />
+          </div>
+
+          <button class="submit-btn" type="submit">Créer mon compte</button>
+        </form>
+
+        <form id="loginForm" style="display:none;">
+          <div class="field">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" placeholder="prenom@domaine.com" required />
+          </div>
+
+          <div class="field">
+            <label for="loginPassword">Mot de passe</label>
+            <input id="loginPassword" type="password" placeholder="Votre mot de passe" required />
+          </div>
+
+          <button class="submit-btn" type="submit">Se connecter</button>
+        </form>
+
+        <div class="muted-link">
+          <span id="switchText">Tu as déjà un compte ?</span>
+          <button type="button" id="switchModeBtn">Connexion</button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const registerForm = document.getElementById("registerForm");
+      const loginForm = document.getElementById("loginForm");
+      const switchModeBtn = document.getElementById("switchModeBtn");
+      const switchText = document.getElementById("switchText");
+
+      function setMode(mode) {
+        const isRegister = mode === "register";
+        registerForm.style.display = isRegister ? "grid" : "none";
+        loginForm.style.display = isRegister ? "none" : "grid";
+
+        tabs.forEach((tab) => {
+          tab.classList.toggle("active", tab.dataset.mode === mode);
+        });
+
+        switchText.textContent = isRegister ? "Tu as déjà un compte ?" : "Tu n’as pas de compte ?";
+        switchModeBtn.textContent = isRegister ? "Connexion" : "Créer un compte";
+      }
+
+      tabs.forEach((tab) => tab.addEventListener("click", () => setMode(tab.dataset.mode)));
+
+      switchModeBtn.addEventListener("click", () => {
+        const currentMode = document.querySelector(".tab.active")?.dataset.mode || "register";
+        setMode(currentMode === "register" ? "login" : "register");
+      });
+
+      function getUsers() {
+        return JSON.parse(localStorage.getItem("calovedrier_users") || "[]");
+      }
+
+      function saveUsers(users) {
+        localStorage.setItem("calovedrier_users", JSON.stringify(users));
+      }
+
+      function generateDuoCode() {
+        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        let code = "";
+        for (let i = 0; i < 6; i++) {
+          code += chars[Math.floor(Math.random() * chars.length)];
+        }
+        return code;
+      }
+
+      function normalizeCode(value) {
+        return (value || "").trim().toUpperCase();
+      }
+
+      function loginUser(user) {
+        sessionStorage.setItem("calovedrier_session", JSON.stringify(user));
+        window.location.href = "index.html";
+      }
+
+      async function registerUser(userPayload) {
+        try {
+          const response = await fetch("/api/users", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userPayload)
+          });
+
+          if (!response.ok) {
+            const err = await response.json().catch(() => ({}));
+            throw new Error(err.error || "Erreur inscription");
+          }
+
+          return await response.json();
+        } catch {
+          const users = getUsers();
+          const exists = users.some((u) => u.email.toLowerCase() === userPayload.email.toLowerCase());
+
+          if (exists) {
+            throw new Error("Un compte existe déjà avec cet email.");
+          }
+
+          let duoCode = normalizeCode(userPayload.duoCode);
+
+          if (!duoCode) {
+            duoCode = generateDuoCode();
+          }
+
+          const savedUser = {
+            id: crypto.randomUUID(),
+            fullName: userPayload.fullName,
+            email: userPayload.email,
+            password: userPayload.password,
+            duoId: duoCode || null,
+            duoCode: duoCode || null
+          };
+
+          users.push(savedUser);
+          saveUsers(users);
+
+          return { user: savedUser };
+        }
+      }
+
+      registerForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const fullName = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim().toLowerCase();
+        const password = document.getElementById("password").value.trim();
+        const confirmPassword = document.getElementById("confirmPassword").value.trim();
+        const duoInput = normalizeCode(document.getElementById("duoCodeInput").value);
+
+        if (!fullName || !email || !password) {
+          alert("Merci de remplir tous les champs.");
+          return;
+        }
+
+        if (password.length < 6) {
+          alert("Le mot de passe doit contenir au moins 6 caractères.");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert("Les mots de passe ne correspondent pas.");
+          return;
+        }
+
+        try {
+          const payload = {
+            fullName,
+            email,
+            password,
+            duoCode: duoInput || null
+          };
+
+          const result = await registerUser(payload);
+          loginUser(result.user);
+        } catch (error) {
+          alert(error.message || "Erreur lors de la création du compte.");
+        }
+      });
+
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+        const password = document.getElementById("loginPassword").value.trim();
+
+        const users = getUsers();
+        const user = users.find((u) => u.email.toLowerCase() === email && u.password === password);
+
+        if (!user) {
+          alert("Identifiants incorrects.");
+          return;
+        }
+
+        loginUser(user);
+      });
+
+      setMode("register");
+    </script>
+  </body>
+</html>
